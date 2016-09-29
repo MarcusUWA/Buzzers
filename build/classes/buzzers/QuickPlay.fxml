@@ -8,10 +8,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="buzzers.QuickPlayController">
+<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="buzzers.QuickPlayController">
    <children>
-      <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="209.0" layoutY="18.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="600.0" text="Answer Buzzers" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
+      <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="209.0" layoutY="18.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="600.0" text="Đố Vui - GĐPT Chánh Tuệ" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
          <font>
             <Font size="24.0" />
          </font>
@@ -28,7 +27,7 @@
          <children>
             <BorderPane fx:id="b1" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #b31a1a;">
                <top>
-                  <Label text="Team Red" BorderPane.alignment="CENTER">
+                  <Label text="Đội Đỏ" BorderPane.alignment="CENTER">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -68,7 +67,7 @@
                   </Label>
                </center>
                <top>
-                  <Label text="Team Blue" BorderPane.alignment="CENTER">
+                  <Label text="Đội Xanh Da Trời" BorderPane.alignment="CENTER">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -94,7 +93,7 @@
                   </Label>
                </center>
                <top>
-                  <Label text="Team Yellow" BorderPane.alignment="CENTER">
+                  <Label text="Đội Vàng" BorderPane.alignment="CENTER">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -120,7 +119,7 @@
                   </Label>
                </center>
                <top>
-                  <Label text="Team Green" BorderPane.alignment="CENTER">
+                  <Label text="Đội Xanh Lá Cây" BorderPane.alignment="CENTER">
                      <font>
                         <Font size="20.0" />
                      </font>

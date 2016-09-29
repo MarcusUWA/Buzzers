@@ -278,6 +278,9 @@ public class QuickPlayController implements Initializable {
         Stage stage = (Stage) backButton.getScene().getWindow();
         stage.close();
         
+        gui.isQuick = 2;
+        gui.onExit();
+        
         //gui.comms.disconnect();
     }
     

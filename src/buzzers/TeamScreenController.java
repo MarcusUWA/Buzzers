@@ -105,9 +105,6 @@ public class TeamScreenController implements Initializable {
     @FXML
     ColorPicker cp12;
     
-    
-    
-    
     /**
      * Initializes the controller class.
      */
@@ -199,7 +196,7 @@ public class TeamScreenController implements Initializable {
         Stage stage = (Stage) finishButton.getScene().getWindow();
         stage.close();
         
-        gui.refreshTeams(list);
+        //gui.refreshTeams(list);
              
     }
     

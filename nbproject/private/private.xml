@@ -5,6 +5,8 @@
         <group>
             <file>file:/Users/Markcuz/NetBeansProjects/Buzzers/src/buzzers/GUIController.java</file>
             <file>file:/Users/Markcuz/NetBeansProjects/Buzzers/src/buzzers/QuickPlayController.java</file>
+            <file>file:/Users/Markcuz/NetBeansProjects/Buzzers/src/buzzers/Communicator.java</file>
+            <file>file:/Users/Markcuz/NetBeansProjects/Buzzers/src/buzzers/PlayScreenController.java</file>
         </group>
     </open-files>
 </project-private>

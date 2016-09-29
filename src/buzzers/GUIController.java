@@ -7,7 +7,6 @@ package buzzers;
 
 import java.net.URL;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,15 +16,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -39,14 +35,13 @@ public class GUIController implements Initializable {
     Communicator comms;  
     StringBuilder message = new StringBuilder(100);
     
-    HashMap playerMap = new HashMap();
-    LinkedList<Team> teamList = new LinkedList();
+    HashMap<Integer, Player> playerMap = new HashMap();
     
     PlayScreenController playController;
     QuickPlayController quickPlay;
     
-    //boolean to cehck is using quickPlay
-    int isQuick;
+    //boolean to check is using quickPlay
+    int isQuick = 2;
     
     @FXML
     AnchorPane mainPane;
@@ -67,29 +62,55 @@ public class GUIController implements Initializable {
     ChoiceBox<String> ports;
     
     @FXML
-    ChoiceBox<String> c1;
+    ColorPicker c1;
     @FXML
-    ChoiceBox<String> c2;
+    ColorPicker c2;
     @FXML
-    ChoiceBox<String> c3;
+    ColorPicker c3;
     @FXML
-    ChoiceBox<String> c4;
+    ColorPicker c4;
     @FXML
-    ChoiceBox<String> c5;
+    ColorPicker c5;
     @FXML
-    ChoiceBox<String> c6;
+    ColorPicker c6;
     @FXML
-    ChoiceBox<String> c7;
+    ColorPicker c7;
     @FXML
-    ChoiceBox<String> c8;
+    ColorPicker c8;
     @FXML
-    ChoiceBox<String> c9;
+    ColorPicker c9;
     @FXML
-    ChoiceBox<String> c10;
+    ColorPicker c10;
     @FXML
-    ChoiceBox<String> c11;
+    ColorPicker c11;
     @FXML
-    ChoiceBox<String> c12;
+    ColorPicker c12;
+    
+    @FXML
+    TextField t1;
+    @FXML
+    TextField t2;
+    @FXML
+    TextField t3;
+    @FXML
+    TextField t4;
+    @FXML
+    TextField t5;
+    @FXML
+    TextField t6;
+    @FXML
+    TextField t7;
+    @FXML
+    TextField t8;
+    @FXML
+    TextField t9;
+    @FXML
+    TextField t10;
+    @FXML
+    TextField t11;
+    @FXML
+    TextField t12;
+     
     
     @FXML
     CheckBox p1;
@@ -122,10 +143,7 @@ public class GUIController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         isQuick = 0;
-        /*mainPane.setBackground(new Background(new BackgroundImage(new Image("gradient.png"),
-        BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-          BackgroundSize.DEFAULT)));
-        */
+
         comms = new Communicator(this);
         try {
             comms.searchForPorts();
@@ -133,7 +151,35 @@ public class GUIController implements Initializable {
         catch (Exception ex) {
             System.out.println("Error!");
         }
+        
+        c1.setValue(Color.BLUE);
+        c2.setValue(Color.RED);
+        c3.setValue(Color.GREEN);
+        c4.setValue(Color.ORANGE);
+        c5.setValue(Color.YELLOW);
+        c6.setValue(Color.PURPLE);
+        c7.setValue(Color.OLIVE);
+        c8.setValue(Color.LIME);
+        c9.setValue(Color.CYAN);
+        c10.setValue(Color.PINK);
+        c11.setValue(Color.BROWN);
+        c12.setValue(Color.SILVER);
+        
+        p1.setSelected(true);
+        p2.setSelected(true);
+        p3.setSelected(true);
+        p4.setSelected(true);
+        p5.setSelected(true);
+        p6.setSelected(true);
+        p7.setSelected(true);
+        p8.setSelected(true);
+        p9.setSelected(true);
+        p10.setSelected(true);
+        p11.setSelected(true);
+        p12.setSelected(true);
+        
     } 
+    
     
     /**
      * @param input
@@ -165,9 +211,9 @@ public class GUIController implements Initializable {
         
         if(split.length>11) {
             if(isQuick == 0) {
-                playController.update(message);
+                playController.update(split);
             }
-            else {
+            else if (isQuick == 1){
                 quickPlay.update(split);
             }
         }
@@ -175,7 +221,7 @@ public class GUIController implements Initializable {
             if(isQuick ==0) {
                 playController.reset();
             }
-            else {
+            else if (isQuick == 1) {
                 quickPlay.reset();
             }
         }
@@ -233,58 +279,74 @@ public class GUIController implements Initializable {
         comms.searchForPorts();
     }
     
+    public void onExit() {
+        comms.disconnect();
+    }
+    
     //***************** Start Custom Players and Teams ***************//
     
     /**
      * @brief maps all the players into the corresponding teams via HashMap
      */
     public void mapPlayers() {
+        
         if(p1.isSelected()) {
-            System.out.println("added player");
-            playerMap.put(1,c1.getValue());
+            Player player = new Player(t1.getText(), c1.getValue());
+            playerMap.put(1, player);
         }
         
         if(p2.isSelected()) {
-            playerMap.put(2,c2.getValue());
+            Player player = new Player(t2.getText(), c2.getValue());
+            playerMap.put(2,player);
         }
         
         if(p3.isSelected()) {
-            playerMap.put(3,c3.getValue());
+            Player player = new Player(t3.getText(), c3.getValue());
+            playerMap.put(3,player);
         }
         
         if(p4.isSelected()) {
-            playerMap.put(4,c4.getValue());
+            Player player = new Player(t4.getText(), c4.getValue());
+            playerMap.put(4,player);
         }
         
         if(p5.isSelected()) {
-            playerMap.put(5,c5.getValue());
+            Player player = new Player(t5.getText(), c5.getValue());
+            playerMap.put(5,player);
         }
         
         if(p6.isSelected()) {
-            playerMap.put(6,c6.getValue());
+            Player player = new Player(t6.getText(), c6.getValue());
+            playerMap.put(6,player);
         }
         
         if(p7.isSelected()) {
-            playerMap.put(7,c7.getValue());
+            Player player = new Player(t7.getText(), c7.getValue());
+            playerMap.put(7,player);
         }
         
         if(p8.isSelected()) {
-            playerMap.put(8,c8.getValue());
+            Player player = new Player(t8.getText(), c8.getValue());
+            playerMap.put(8,player);
         }
         if(p9.isSelected()) {
-            playerMap.put(9,c9.getValue());
+            Player player = new Player(t9.getText(), c9.getValue());
+            playerMap.put(9,player);
         }
         
         if(p10.isSelected()) {
-            playerMap.put(10,c10.getValue());
+            Player player = new Player(t10.getText(), c10.getValue());
+            playerMap.put(10,player);
         }
         
         if(p11.isSelected()) {
-            playerMap.put(11,c11.getValue());
+            Player player = new Player(t11.getText(), c11.getValue());
+            playerMap.put(11,player);
         }
         
         if(p12.isSelected()) {
-            playerMap.put(12,c12.getValue());
+            Player player = new Player(t12.getText(), c12.getValue());
+            playerMap.put(12,player);
         }
     }
     
@@ -311,10 +373,9 @@ public class GUIController implements Initializable {
         
         try {
             Pane pane = loader.load();
-
             playController = loader.getController();
             playController.setMainWindow(this, playerMap);
-        
+            
             Stage stage = new Stage();
         
             stage.initModality(Modality.WINDOW_MODAL);
@@ -327,101 +388,10 @@ public class GUIController implements Initializable {
             
             stage.setMaximized(true);
             stage.show();
-            
-            playController.setupList(teamList);
-            playController.setupGrid();
         }
         
         catch (Exception e) {
             System.out.println("Failed to open Play Window");
-        }
-    }
-    
-    /**
-     * @brief opens the Team screen to customise team colours
-     * @param event 
-     */
-    public void onTeam(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("TeamScreen.fxml"));
-        
-        try {
-            Pane pane = loader.load();
-
-            TeamScreenController controller = loader.getController();
-            controller.setMainWindow(this);
-        
-            Stage stage = new Stage();
-        
-            stage.initModality(Modality.WINDOW_MODAL);
-            stage.initOwner(refreshButton.getScene().getWindow());
-        
-            Scene scene = new Scene(pane);
-        
-            stage.setScene(scene);
-            stage.setTitle("Teams!!!");
-            
-            stage.show();
-        }
-        catch (Exception e) {
-            System.out.println("Failed to open Team Window");
-        }
-    }
-    
-    /**
-     * @brief refreshes the choice boxes for the teams
-     * @param list 
-     */
-    public void refreshTeams(LinkedList<Team> list) {
-        
-        this.teamList = list;
-        
-        c1.getItems().clear();
-        for(Team temp : list) {
-            c1.getItems().add(temp.teamName);
-        }
-        c2.getItems().clear();
-        for(Team temp : list) {
-            c2.getItems().add(temp.teamName);
-        }
-        c3.getItems().clear();
-        for(Team temp : list) {
-            c3.getItems().add(temp.teamName);
-        }
-        c4.getItems().clear();
-        for(Team temp : list) {
-            c4.getItems().add(temp.teamName);
-        }
-        c5.getItems().clear();
-        for(Team temp : list) {
-            c5.getItems().add(temp.teamName);
-        }
-        c6.getItems().clear();
-        for(Team temp : list) {
-            c6.getItems().add(temp.teamName);
-        }
-        c7.getItems().clear();
-        for(Team temp : list) {
-            c7.getItems().add(temp.teamName);
-        }
-        c8.getItems().clear();
-        for(Team temp : list) {
-            c8.getItems().add(temp.teamName);
-        }
-        c9.getItems().clear();
-        for(Team temp : list) {
-            c9.getItems().add(temp.teamName);
-        }
-        c10.getItems().clear();
-        for(Team temp : list) {
-            c10.getItems().add(temp.teamName);
-        }
-        c11.getItems().clear();
-        for(Team temp : list) {
-            c11.getItems().add(temp.teamName);
-        }
-        c12.getItems().clear();
-        for(Team temp : list) {
-            c12.getItems().add(temp.teamName);
         }
     }
       
